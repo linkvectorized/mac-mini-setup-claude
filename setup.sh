@@ -19,7 +19,6 @@ printf "${CYAN}"
 cat << 'EOF'
   ╔══════════════════════════════════════════════╗
   ║         MAC MINI SETUP — linkvectorized      ║
-  ║              by Claude Code                  ║
   ╚══════════════════════════════════════════════╝
 EOF
 printf "${NC}\n"

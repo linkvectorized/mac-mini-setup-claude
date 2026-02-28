@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# brian_script.sh — initialize a fresh Mac with core dev environment
+# setup.sh — initialize a fresh Mac with core dev environment
 
 set -e
 

@@ -82,7 +82,7 @@ else
 fi
 
 if [ "$SHELL" = "/opt/homebrew/bin/bash" ]; then
-  printf "   $PASS default shell is already bash\n"
+  printf "   $PASS default shell is already bash 5\n"
 else
   printf "   $FAIL default shell is $SHELL — will switch to /opt/homebrew/bin/bash\n"
 fi
@@ -199,10 +199,14 @@ else
 fi
 
 if [ "$SHELL" != "/opt/homebrew/bin/bash" ]; then
+  if ! grep -qF '/opt/homebrew/bin/bash' /etc/shells; then
+    echo '/opt/homebrew/bin/bash' | sudo tee -a /etc/shells > /dev/null
+    printf "   $PASS added Homebrew bash to /etc/shells\n"
+  fi
   chsh -s /opt/homebrew/bin/bash
-  printf "   $PASS default shell switched to bash — restart terminal after setup\n"
+  printf "   $PASS default shell switched to bash 5 — restart terminal after setup\n"
 else
-  printf "   $PASS default shell is already bash\n"
+  printf "   $PASS default shell is already bash 5\n"
 fi
 
 # ── 5. Claude Code CLI ────────────────────────────────────────────────────────

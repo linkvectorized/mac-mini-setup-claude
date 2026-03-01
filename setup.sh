@@ -200,7 +200,7 @@ fi
 
 if [ "$SHELL" != "/opt/homebrew/bin/bash" ]; then
   if ! grep -qF '/opt/homebrew/bin/bash' /etc/shells; then
-    echo '/opt/homebrew/bin/bash' | sudo tee -a /etc/shells > /dev/null
+    sudo bash -c "echo '/opt/homebrew/bin/bash' >> /etc/shells"
     printf "   $PASS added Homebrew bash to /etc/shells\n"
   fi
   chsh -s /opt/homebrew/bin/bash

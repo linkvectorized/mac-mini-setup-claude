@@ -26,7 +26,7 @@ Bootstraps a fresh Mac with a full dev environment.
 ## Run it
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/linkvectorized/mac-mini-setup-claude/main/setup.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/linkvectorized/mac-mini-setup/main/setup.sh)
 ```
 
 ## What you'll need

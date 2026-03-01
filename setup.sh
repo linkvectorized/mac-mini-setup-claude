@@ -56,7 +56,7 @@ printf "3. Brew packages\n"
 BREW_PACKAGES=(gh node go jq git)
 for pkg in "${BREW_PACKAGES[@]}"; do
   if command -v "$pkg" &>/dev/null; then
-    printf "   $PASS $pkg — $(command -v $pkg)\n"
+    printf "   $PASS $pkg — $(command -v "$pkg")\n"
   else
     printf "   $FAIL $pkg — not installed\n"
   fi

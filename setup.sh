@@ -273,6 +273,7 @@ source ~/.bash_profile 2>/dev/null || true
 printf "  ${CYAN}source ~/.bash_profile${NC} applied — restart terminal to get bash 5 as login shell\n\n"
 
 printf "  ${BOLD}Versions:${NC}\n"
+printf "    bash:   $(/opt/homebrew/bin/bash --version | head -1)\n"
 printf "    brew:   $(brew --version | head -1)\n"
 printf "    gh:     $(gh --version | head -1)\n"
 printf "    node:   $(node --version)\n"

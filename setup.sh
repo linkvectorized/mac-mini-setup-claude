@@ -77,8 +77,8 @@ done
 
 echo ""
 
-# 4. Shell config
-printf "4. Shell config\n"
+# 4. Dotfiles
+printf "4. Dotfiles\n"
 DOTFILES_DIR="$HOME/vset"
 if [ -d "$DOTFILES_DIR/.git" ]; then
   printf "   $PASS vset repo exists at $DOTFILES_DIR\n"
@@ -86,13 +86,16 @@ else
   printf "   $FAIL vset repo not found — will clone\n"
 fi
 
-if [ -L "$HOME/.bash_profile" ] && [ "$(readlink "$HOME/.bash_profile")" = "$DOTFILES_DIR/.bash_profile" ]; then
-  printf "   $PASS .bash_profile symlinked correctly\n"
-elif [ -f "$HOME/.bash_profile" ]; then
-  printf "   $FAIL .bash_profile exists but is not symlinked\n"
-else
-  printf "   $FAIL .bash_profile not found — will link\n"
-fi
+DOTFILES=(.bash_profile)
+for df in "${DOTFILES[@]}"; do
+  if [ -L "$HOME/$df" ] && [ "$(readlink "$HOME/$df")" = "$DOTFILES_DIR/$df" ]; then
+    printf "   $PASS $df symlinked\n"
+  elif [ -f "$HOME/$df" ]; then
+    printf "   $FAIL $df exists but is not symlinked\n"
+  else
+    printf "   $FAIL $df not found — will link\n"
+  fi
+done
 
 echo ""
 
@@ -192,7 +195,7 @@ for pkg in "${BREW_PACKAGES[@]}"; do
   fi
 done
 
-# ── 4. Shell config ───────────────────────────────────────────────────────────
+# ── 4. Dotfiles ───────────────────────────────────────────────────────────────
 SETUP_REPO="https://github.com/linkvectorized/vset.git"
 
 echo ""
@@ -204,12 +207,15 @@ else
   spinner $! "vset up to date"
 fi
 
-if [ ! -f "$HOME/.bash_profile" ] || [ "$(readlink "$HOME/.bash_profile")" != "$DOTFILES_DIR/.bash_profile" ]; then
-  ln -sf "$DOTFILES_DIR/.bash_profile" "$HOME/.bash_profile"
-  printf "   $PASS .bash_profile linked\n"
-else
-  printf "   $PASS .bash_profile already linked\n"
-fi
+for df in "${DOTFILES[@]}"; do
+  if [ ! -L "$HOME/$df" ] || [ "$(readlink "$HOME/$df")" != "$DOTFILES_DIR/$df" ]; then
+    ln -sf "$DOTFILES_DIR/$df" "$HOME/$df"
+    printf "   $PASS $df linked\n"
+  else
+    printf "   $PASS $df already linked\n"
+  fi
+done
+printf "   $PASS dotfiles installed\n"
 
 if [ "$SHELL" != "/opt/homebrew/bin/bash" ]; then
   if ! grep -qF '/opt/homebrew/bin/bash' /etc/shells; then

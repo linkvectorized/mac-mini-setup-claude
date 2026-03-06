@@ -81,12 +81,6 @@ else
   printf "   $FAIL .bash_profile not found — will link\n"
 fi
 
-if [ "$SHELL" = "/opt/homebrew/bin/bash" ]; then
-  printf "   $PASS default shell is already bash 5\n"
-else
-  printf "   $FAIL default shell is $SHELL — will switch to /opt/homebrew/bin/bash\n"
-fi
-
 echo ""
 
 # 5. Claude Code

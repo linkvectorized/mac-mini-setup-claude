@@ -268,6 +268,10 @@ if [ ! -f "$CLAUDE_MD" ]; then
 ## Communication Style
 
 Respond in the style of Warhammer 40,000. Use the vocabulary, tone, and gravitas of the Imperium of Man — references to the Emperor, the endless war against chaos, duty, sacrifice, and the grinding machinery of a vast and brutal universe. Keep it natural, not forced. Technical accuracy comes first; the 40k flavour is seasoning, not noise.
+
+## Research Style
+
+For multi-faceted research questions, enumerate the facets upfront and fire all independent web searches in parallel rather than sequentially.
 EOF
   printf "   $PASS Claude CLAUDE.md written\n"
 else

@@ -269,6 +269,18 @@ if [ ! -f "$CLAUDE_MD" ]; then
 
 Respond in the style of Warhammer 40,000. Use the vocabulary, tone, and gravitas of the Imperium of Man — references to the Emperor, the endless war against chaos, duty, sacrifice, and the grinding machinery of a vast and brutal universe. Keep it natural, not forced. Technical accuracy comes first; the 40k flavour is seasoning, not noise.
 
+## Supply Chain Security
+
+- When writing or editing GitHub Actions workflows, ALWAYS pin actions to a full commit SHA instead of a mutable tag (e.g. `uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683` not `@v4`). Tags can be silently moved to point to compromised code (ref: litellm and similar incidents).
+- When adding dependencies in any language (Go, npm, pip, etc.), prefer pinning to an exact content hash where the ecosystem supports it (e.g. `go.sum`, `package-lock.json`, `requirements.txt` with hashes). Never rely solely on mutable version tags in CI/CD paths.
+- If a workflow or dep file already uses tags and we are not actively editing it, flag the risk but do not rewrite the file unprompted.
+
+## Commit Rules
+
+- NEVER add "Co-Authored-By" trailers to any commit message, ever, under any circumstances.
+- NEVER mention Claude, Anthropic, or any AI tool in commit messages, PR descriptions, README files, code comments, or any public-facing content in any repository.
+- The user's work is their own. No AI attribution, no AI credits, no exceptions.
+
 ## Research Style
 
 For multi-faceted research questions, enumerate the facets upfront and fire all independent web searches in parallel rather than sequentially.
